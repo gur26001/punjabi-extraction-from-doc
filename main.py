@@ -35,9 +35,10 @@ while (i<=(img.shape)[0]):
     image=img[i:y,0:1106];
     cv2.imwrite("data.jpeg",image)
     text = tess.pytesseract.image_to_string(Image.open("data.jpeg"), lang='pan')
-    folder = "city"+str(i)
+    arr=text.split(" ")
+    folder = "city"+arr[1][0]
     os.makedirs(folder)
-    cv2.imwrite(str(folder)+"/data" + str(i) + ".jpeg", image)
+    cv2.imwrite(str(folder)+"/data"+str(arr[1][0])+ ".jpeg", image)
     if(text):
         outer.append(text.split("\n"))
     i=y;
