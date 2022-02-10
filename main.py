@@ -25,7 +25,7 @@ img = cv2.imread('testimage.jpeg')
 img= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 
-path = "./data"
+path = "./output"
 os.chdir(path)
 
 outer=[]
