@@ -34,8 +34,8 @@ y=150
 k=1
 while (i<=(img.shape)[0]):
     image=img[i:y,0:1106];
-    cv2.imwrite("data.jpeg",image)
-    text = tess.pytesseract.image_to_string(Image.open("data.jpeg"), lang='pan')
+    cv2.imwrite("tmp.jpeg",image)
+    text = tess.pytesseract.image_to_string(Image.open("tmp.jpeg"), lang='pan')
     arr=text.split(" ") and text.split("\n")
     print(arr[0])
     translator = Translator()
