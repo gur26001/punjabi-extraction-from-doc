@@ -13,6 +13,9 @@
 # cv2.imshow("img",img)
 # cv2.waitKey(0)
 import numpy as np
+
+import os
+
 import pytesseract as tess
 tess.pytesseract.tesseract_cmd= r'D:\tesseract-ocr\tesseract.exe'
 from PIL import Image
@@ -22,14 +25,19 @@ img = cv2.imread('testimage.jpeg')
 img= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 
+path = "./"
+os.chdir(path)
 
 outer=[]
 i=1
 y=150
 while (i<=(img.shape)[0]):
     image=img[i:y,0:1106];
-    cv2.imwrite("data"+str(i)+".jpeg",image)
-    text = tess.pytesseract.image_to_string(Image.open("data"+str(i)+".jpeg"), lang='pan')
+    cv2.imwrite("data.jpeg",image)
+    text = tess.pytesseract.image_to_string(Image.open("data.jpeg"), lang='pan')
+    folder = "city"+str(i)
+    os.makedirs(folder)
+    cv2.imwrite(str(folder)+"/data" + str(i) + ".jpeg", image)
     if(text):
         outer.append(text.split("\n"))
     i=y;
